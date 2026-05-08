@@ -9,12 +9,11 @@ function NewPlantForm({ onAddPlant }) {
     e.preventDefault();
 
     const newPlant = {
-      name,
-      image,
-      price: Number(price),
+      name: name,
+      image: image,
+      price: price,
     };
 
-    // POST request to backend
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
@@ -27,7 +26,6 @@ function NewPlantForm({ onAddPlant }) {
         onAddPlant(addedPlant);
       });
 
-    // Clear form inputs
     setName("");
     setImage("");
     setPrice("");

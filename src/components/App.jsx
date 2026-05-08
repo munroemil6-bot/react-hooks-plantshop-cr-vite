@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import PlantPage from "./PlantPage";
 
@@ -6,7 +6,7 @@ function App() {
   const [plants, setPlants] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Fetch all plants when app loads
+  // Fetch plants when app loads
   useEffect(() => {
     fetch("http://localhost:6001/plants")
       .then((res) => res.json())
@@ -18,7 +18,7 @@ function App() {
     setPlants([...plants, newPlant]);
   }
 
-  // Filter plants based on search
+  // Filter plants by search
   const filteredPlants = plants.filter((plant) =>
     plant.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      
+
       <PlantPage
         plants={filteredPlants}
         onAddPlant={handleAddPlant}
